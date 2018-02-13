@@ -5,7 +5,7 @@
     <item
         android:id="@+id/toolbar_2d_barcode_address"
         android:icon="@drawable/ic_qrcode_black_24dp"
-        android:title="Barcode"
+        android:title="@string/qrcode"
         app:showAsAction="always"
         />
 

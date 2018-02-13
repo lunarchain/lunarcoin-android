@@ -17,8 +17,8 @@ class MainActivity : AppCompatActivity() {
                 ft.commit()
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_miner -> {
-                currentFragment = MinerFragment()
+            R.id.navigation_mine -> {
+                currentFragment = MineFragment()
                 val ft = supportFragmentManager.beginTransaction()
                 ft.replace(R.id.content, currentFragment)
                 ft.commit()

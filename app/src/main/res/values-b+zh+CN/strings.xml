@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">LunarCoin</string>
-    <string name="title_wallet">Wallet</string>
-    <string name="title_mine">Mine</string>
-    <string name="title_transfer">Transfer</string>
-    <string name="qrcode">QR Code</string>
+    <string name="title_wallet">钱包</string>
+    <string name="title_mine">挖矿</string>
+    <string name="title_transfer">交易</string>
+    <string name="qrcode">二维码</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

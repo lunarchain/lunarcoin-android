@@ -7,9 +7,9 @@
         android:title="@string/title_wallet" />
 
     <item
-        android:id="@+id/navigation_miner"
-        android:icon="@drawable/ic_miner_black_24dp"
-        android:title="@string/title_miner" />
+        android:id="@+id/navigation_mine"
+        android:icon="@drawable/ic_mine_black_24dp"
+        android:title="@string/title_mine" />
 
     <item
         android:id="@+id/navigation_transfer"
