@@ -1,4 +1,4 @@
-package io.lunarchain
+package io.lunarchain.lunarcoin.android
 
 import android.net.Uri
 import android.os.Bundle
@@ -6,17 +6,21 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.lunarchain.R
+import io.lunarchain.lunarcoin.util.CryptoUtil
+import kotlinx.android.synthetic.main.fragment_wallet.*
+import org.slf4j.LoggerFactory
 
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [MineFragment.OnFragmentInteractionListener] interface
+ * [WalletFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [MineFragment.newInstance] factory method to
+ * Use the [WalletFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MineFragment : Fragment() {
+class WalletFragment : Fragment() {
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
@@ -35,11 +39,18 @@ class MineFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater?.inflate(R.layout.fragment_mine, container, false)
+        return inflater?.inflate(R.layout.fragment_wallet, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        wallet_toolbar.inflateMenu(R.menu.wallet_toolbar_menu)
+
+        val kp = CryptoUtil.generateKeyPair()
+        val address = CryptoUtil.generateAddress(kp.public)
+        val logger = LoggerFactory.getLogger(javaClass)
+        logger.debug(address.toString())
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -48,6 +59,7 @@ class MineFragment : Fragment() {
             mListener!!.onFragmentInteraction(uri)
         }
     }
+
 
     override fun onDetach() {
         super.onDetach()
@@ -80,11 +92,11 @@ class MineFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment MineFragment.
+         * @return A new instance of fragment WalletFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): MineFragment {
-            val fragment = MineFragment()
+        fun newInstance(param1: String, param2: String): WalletFragment {
+            val fragment = WalletFragment()
             val args = Bundle()
             args.putString(ARG_PARAM1, param1)
             args.putString(ARG_PARAM2, param2)

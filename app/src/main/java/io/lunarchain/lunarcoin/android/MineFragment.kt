@@ -1,4 +1,4 @@
-package io.lunarchain
+package io.lunarchain.lunarcoin.android
 
 import android.net.Uri
 import android.os.Bundle
@@ -6,17 +6,21 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import io.lunarchain.R
+import io.lunarchain.lunarcoin.core.BlockChainManager
+import kotlinx.android.synthetic.main.fragment_mine.*
 
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [TransferFragment.OnFragmentInteractionListener] interface
+ * [MineFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [TransferFragment.newInstance] factory method to
+ * Use the [MineFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TransferFragment : Fragment() {
+class MineFragment : Fragment() {
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
@@ -30,12 +34,19 @@ class TransferFragment : Fragment() {
             mParam1 = arguments.getString(ARG_PARAM1)
             mParam2 = arguments.getString(ARG_PARAM2)
         }
+
+        btnStartMine.setOnClickListener { v -> BlockChainManager.INSTANCE.startMining()}
+        btnStopMine.setOnClickListener { v -> BlockChainManager.INSTANCE.stopMining() }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_transfer, container, false)
+        return inflater?.inflate(R.layout.fragment_mine, container, false)
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -45,11 +56,11 @@ class TransferFragment : Fragment() {
         }
     }
 
-
     override fun onDetach() {
         super.onDetach()
         mListener = null
     }
+
 
     /**
      * This interface must be implemented by activities that contain this
@@ -77,11 +88,11 @@ class TransferFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment TransferFragment.
+         * @return A new instance of fragment MineFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): TransferFragment {
-            val fragment = TransferFragment()
+        fun newInstance(param1: String, param2: String): MineFragment {
+            val fragment = MineFragment()
             val args = Bundle()
             args.putString(ARG_PARAM1, param1)
             args.putString(ARG_PARAM2, param2)

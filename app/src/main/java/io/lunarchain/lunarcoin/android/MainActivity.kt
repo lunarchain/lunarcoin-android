@@ -1,9 +1,13 @@
-package io.lunarchain
+package io.lunarchain.lunarcoin.android
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import io.lunarchain.R
+import io.lunarchain.lunarcoin.config.BlockChainConfig
+import io.lunarchain.lunarcoin.core.BlockChain
+import io.lunarchain.lunarcoin.core.BlockChainManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -48,5 +52,17 @@ class MainActivity : AppCompatActivity() {
 
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        initBlockChain()
+    }
+
+    fun initBlockChain() {
+        val dir = content.context.filesDir
+        val ins = assets.open("application.conf")
+
+        val blockChain = BlockChain(
+                BlockChainConfig(ins)
+        )
+        val manager = BlockChainManager(blockChain)
+        manager.startPeerDiscovery()
     }
 }

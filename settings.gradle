@@ -1,1 +1,3 @@
 include ':app'
+include "lunarcoin-core"
+project(':lunarcoin-core').projectDir = new File('../lunarcoin-core')
