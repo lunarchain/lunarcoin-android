@@ -5,6 +5,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import io.lunarchain.R
+import io.lunarchain.lunarcoin.android.storage.SqliteRepository
 import io.lunarchain.lunarcoin.config.BlockChainConfig
 import io.lunarchain.lunarcoin.core.BlockChain
 import io.lunarchain.lunarcoin.core.BlockChainManager
@@ -55,13 +56,18 @@ class MainActivity : AppCompatActivity() {
         initBlockChain()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        BlockChainManager.INSTANCE.stop()
+    }
+
     fun initBlockChain() {
-        val dir = content.context.filesDir
+        //val dir = content.context.filesDir
         val ins = assets.open("application.conf")
 
-        val blockChain = BlockChain(
-                BlockChainConfig(ins)
-        )
+        val config = BlockChainConfig(ins)
+        val blockChain = BlockChain(config, SqliteRepository())
         val manager = BlockChainManager(blockChain)
         manager.startPeerDiscovery()
     }

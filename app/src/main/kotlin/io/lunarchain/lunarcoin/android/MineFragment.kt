@@ -35,8 +35,8 @@ class MineFragment : Fragment() {
             mParam2 = arguments.getString(ARG_PARAM2)
         }
 
-        btnStartMine.setOnClickListener { v -> BlockChainManager.INSTANCE.startMining()}
-        btnStopMine.setOnClickListener { v -> BlockChainManager.INSTANCE.stopMining() }
+        btnStartMine.setOnClickListener { _ -> BlockChainManager.INSTANCE.startMining()}
+        btnStopMine.setOnClickListener { _ -> BlockChainManager.INSTANCE.stopMining() }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
