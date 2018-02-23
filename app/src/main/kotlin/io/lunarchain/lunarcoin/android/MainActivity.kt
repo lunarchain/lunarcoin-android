@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         val ins = assets.open("application.conf")
 
         val config = BlockChainConfig(ins)
-        val blockChain = BlockChain(config, SqliteRepository())
+        val blockChain = BlockChain(config, SqliteRepository(LunarCoinApp.context))
         val manager = BlockChainManager(blockChain)
         manager.startPeerDiscovery()
     }

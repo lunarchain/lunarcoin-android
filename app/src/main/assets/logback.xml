@@ -1,0 +1,54 @@
+<!--debug属性用来决定是否打印logback的日志信息-->
+<configuration debug='false'>
+
+    <!--用于在控制台输出的Appender-->
+    <appender name="LOGCAT" class="ch.qos.logback.classic.android.LogcatAppender">
+        <encoder>
+            <pattern>%-5relative [%thread][%file:%M:%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Write INFO (and higher-level) messages to the log file -->
+    <root level="TRACE">
+        <appender-ref ref="LOGCAT"/>
+    </root>
+
+    <!--支持的level-->
+    <!--TRACE-->
+    <!--DEBUG-->
+    <!--INFO-->
+    <!--WARN-->
+    <!--ERROR-->
+
+    <!--<pattern>
+      %d{yyyy-MM-dd HH:mm:ss} [%level] - %msg%n
+      Logger: %logger
+      Class: %class
+      File: %file
+      Caller: %caller
+      Line: %line
+      Message: %m
+      Method: %M
+      Relative: %relative
+      Thread: %thread
+      Exception: %ex
+      xException: %xEx
+      nopException: %nopex
+      rException: %rEx
+      Marker: %marker
+      %n
+  </pattern>-->
+
+    <!--引用其他位置的配置信息-->
+    <!--<includes>-->
+    <!--<include file="/sdcard/foo.xml"/>-->
+    <!--<include resource="assets/config/test.xml"/>-->
+    <!--<include resource="AndroidManifest.xml"/>-->
+
+    <!--<include file="/sdcard/logback/logback-test.xml"/>-->
+    <!--<include file="/sdcard/logback/logback.xml"/>-->
+    <!--<include resource="AndroidManifest.xml"/>-->
+    <!--<include resource="assets/logback-test.xml"/>-->
+    <!--<include resource="assets/logback.xml"/>-->
+    <!--</includes>-->
+</configuration>
