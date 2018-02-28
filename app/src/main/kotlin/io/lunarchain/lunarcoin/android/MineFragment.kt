@@ -34,9 +34,6 @@ class MineFragment : Fragment() {
             mParam1 = arguments.getString(ARG_PARAM1)
             mParam2 = arguments.getString(ARG_PARAM2)
         }
-
-        btnStartMine.setOnClickListener { _ -> BlockChainManager.INSTANCE.startMining()}
-        btnStopMine.setOnClickListener { _ -> BlockChainManager.INSTANCE.stopMining() }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -47,6 +44,8 @@ class MineFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        btnStartMine.setOnClickListener { _ -> BlockChainManager.INSTANCE.startMining()}
+        btnStopMine.setOnClickListener { _ -> BlockChainManager.INSTANCE.stopMining() }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
