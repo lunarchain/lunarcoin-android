@@ -3,14 +3,12 @@ package io.lunarchain.lunarcoin.android
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.Menu
+import android.view.MenuInflater
 import io.lunarchain.R
+import io.lunarchain.lunarcoin.android.base.BaseFragment
 import io.lunarchain.lunarcoin.util.CryptoUtil
-import kotlinx.android.synthetic.main.fragment_wallet.*
 import org.slf4j.LoggerFactory
-
 
 /**
  * A simple [Fragment] subclass.
@@ -20,7 +18,7 @@ import org.slf4j.LoggerFactory
  * Use the [WalletFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class WalletFragment : Fragment() {
+class WalletFragment : BaseFragment() {
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
@@ -30,27 +28,26 @@ class WalletFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         if (arguments != null) {
             mParam1 = arguments.getString(ARG_PARAM1)
             mParam2 = arguments.getString(ARG_PARAM2)
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater?.inflate(R.layout.fragment_wallet, container, false)
-    }
+    override fun getContentViewResId(): Int = R.layout.fragment_wallet
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        wallet_toolbar.inflateMenu(R.menu.wallet_toolbar_menu)
-
+    override fun init(savedInstanceState: Bundle?) {
+        activity.setTitle(R.string.title_wallet)
         val kp = CryptoUtil.generateKeyPair()
         val address = CryptoUtil.generateAddress(kp.public)
         val logger = LoggerFactory.getLogger(javaClass)
         logger.debug(address.toString())
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.wallet_qrcode, menu)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
