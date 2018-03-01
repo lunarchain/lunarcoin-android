@@ -3,14 +3,10 @@ package io.lunarchain.lunarcoin.android
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import io.lunarchain.R
+import io.lunarchain.lunarcoin.android.base.BaseFragment
 import io.lunarchain.lunarcoin.core.BlockChainManager
 import kotlinx.android.synthetic.main.fragment_mine.*
-
 
 /**
  * A simple [Fragment] subclass.
@@ -20,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_mine.*
  * Use the [MineFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MineFragment : Fragment() {
+class MineFragment : BaseFragment() {
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
@@ -36,15 +32,11 @@ class MineFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater?.inflate(R.layout.fragment_mine, container, false)
-    }
+    override fun getContentViewResId() = R.layout.fragment_mine
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        btnStartMine.setOnClickListener { _ -> BlockChainManager.INSTANCE.startMining()}
+    override fun init(savedInstanceState: Bundle?) {
+        activity.setTitle(R.string.title_mine)
+        btnStartMine.setOnClickListener { _ -> BlockChainManager.INSTANCE.startMining() }
         btnStopMine.setOnClickListener { _ -> BlockChainManager.INSTANCE.stopMining() }
     }
 
