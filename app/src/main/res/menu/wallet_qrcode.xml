@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/toolbar_2d_barcode_address"
+        android:id="@+id/menuAddress"
         android:icon="@drawable/ic_qrcode_black_24dp"
         android:title="@string/qrcode"
         app:showAsAction="always"

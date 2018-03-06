@@ -5,6 +5,11 @@
     <string name="title_transfer">Transfer</string>
     <string name="qrcode">QR Code</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wallet_activity">ACTIVITY</string>
+    <string name="wallet_bits_received" translatable="false">+ %s bits</string>
+    <string name="wallet_bits_sent" translatable="false">- %s bits</string>
+
+    <string name="qrcode_address">My Bitcoin address</string>
+    <string name="qrcode_newAddress">Generate new address</string>
+
 </resources>
