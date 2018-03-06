@@ -3,4 +3,10 @@
     <color name="colorPrimary">#0b467f</color>
     <color name="colorPrimaryDark">#000b0b</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="gray">#A0A0A0</color>
+    <color name="grayBG">#E3E3E3</color>
+    <color name="white">@android:color/white</color>
+    <color name="black">@android:color/black</color>
+    <color name="greenLight">#4FD7B3</color>
 </resources>
