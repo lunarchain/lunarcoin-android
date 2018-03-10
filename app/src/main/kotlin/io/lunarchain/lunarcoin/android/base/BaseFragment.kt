@@ -12,12 +12,12 @@ import kotlinx.android.synthetic.main.fragment_base.*
 
 abstract class BaseFragment : Fragment() {
 
-    protected lateinit var root: LinearLayout
+    protected lateinit var root: View
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        root = inflater?.inflate(getRootContentViewResId(), container, false) as LinearLayout
-        if (getContentViewResId() != 0) {
-            root.addView(View.inflate(context, getContentViewResId(), null))
+        root = inflater!!.inflate(getRootContentViewResId(), container, false)
+        if (getContentViewResId() != 0 && root is LinearLayout) {
+            (root as LinearLayout).addView(View.inflate(context, getContentViewResId(), null))
         }
         return root
     }

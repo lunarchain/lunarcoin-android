@@ -1,11 +1,15 @@
-package io.lunarchain.lunarcoin.android
+package io.lunarchain.lunarcoin.android.ui.main
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import io.lunarchain.R
+import io.lunarchain.lunarcoin.android.LunarCoinApp
+import io.lunarchain.lunarcoin.android.MineFragment
+import io.lunarchain.lunarcoin.android.TransferFragment
 import io.lunarchain.lunarcoin.android.storage.SqliteRepository
+import io.lunarchain.lunarcoin.android.ui.wallet.WalletFragment
 import io.lunarchain.lunarcoin.config.BlockChainConfig
 import io.lunarchain.lunarcoin.core.BlockChain
 import io.lunarchain.lunarcoin.core.BlockChainManager
@@ -27,6 +31,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        removeBackStackIfExist()
         replaceFragment(item.itemId)
         return true
     }
@@ -49,6 +54,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             else -> WalletFragment()
         }
         supportFragmentManager.beginTransaction().replace(R.id.content, currentFragment).commit()
+    }
+
+    private fun removeBackStackIfExist() {
+        var backStackEntityCount = supportFragmentManager.backStackEntryCount
+        for (i in 0..backStackEntityCount) {
+            supportFragmentManager.popBackStack()
+        }
     }
 
 }
