@@ -17,7 +17,10 @@ abstract class BaseFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         root = inflater?.inflate(getRootContentViewResId(), container, false) as LinearLayout
         if (getContentViewResId() != 0) {
-            root.addView(View.inflate(context, getContentViewResId(), null))
+            root.addView(
+                View.inflate(context, getContentViewResId(), null),
+                LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
+            )
         }
         return root
     }

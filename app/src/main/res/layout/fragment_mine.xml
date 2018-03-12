@@ -1,25 +1,23 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:theme="@style/AppTheme"
-              android:weightSum="1"
-              tools:context="io.lunarchain.lunarcoin.android.MineFragment"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
     >
 
-    <Button
-        android:id="@+id/btnStartMine"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvMining"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:layout_centerInParent="true"
+        android:text="@string/mine_mining"
         />
 
-    <Button
-        android:id="@+id/btnStopMine"
-        android:layout_width="match_parent"
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/switchMining"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="STOP"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/tvMining"
         />
 
-</LinearLayout>
+</RelativeLayout>
