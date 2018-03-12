@@ -17,7 +17,15 @@ import io.lunarchain.lunarcoin.util.CodecUtil
 import lunar.vm.DataWord
 import java.math.BigInteger
 
-class SqliteRepository(val context: Context): Repository {
+class SqliteRepository(val context: Context) : Repository {
+
+    override fun saveCode(addr: ByteArray, code: ByteArray) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getCodeHash(addr: ByteArray): ByteArray? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun getBalance(address: ByteArray): BigInteger {
         return getAccountState(address)?.balance ?: BigInteger.ZERO
@@ -26,16 +34,16 @@ class SqliteRepository(val context: Context): Repository {
     override fun increaseNonce(address: ByteArray) {
         val accountState = getOrCreateAccountState(address)
         accountStateDs.update(
-                address,
-                CodecUtil.encodeAccountState(accountState.increaseNonce())
+            address,
+            CodecUtil.encodeAccountState(accountState.increaseNonce())
         )
     }
 
     override fun addBalance(address: ByteArray, amount: BigInteger) {
         val accountState = getOrCreateAccountState(address)
         accountStateDs.update(
-                address,
-                CodecUtil.encodeAccountState(accountState.increaseBalance(amount))
+            address,
+            CodecUtil.encodeAccountState(accountState.increaseBalance(amount))
         )
     }
 
@@ -162,7 +170,7 @@ class SqliteRepository(val context: Context): Repository {
         return state
     }
 
-    private fun getOrCreateAccountState(address: ByteArray): AccountState {
+    override fun getOrCreateAccountState(address: ByteArray): AccountState {
         var ret = getAccountState(address)
         if (ret == null) {
             ret = createAccountState(address)
